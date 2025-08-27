@@ -52,6 +52,14 @@ setInterval(() => {
     AdContainers = AdContainers.filter(AdContainer => !/\[[0-9]+\] .+/.test(AdContainer.innerText))
 
     AdContainers.forEach(Ele => Ele.remove())
+
+    let AdPlaceholders = Array.from(document.querySelectorAll('div[class]'))
+      .filter((Ele): Ele is HTMLElement => Ele instanceof HTMLElement)
+      .filter(Ele => /^w[0-9a-zA-Z]{7}$/.test(Ele.className))
+      .filter(Ele => Ele.innerText.trim().length === 0)
+      .filter(Ele => Ele.childElementCount > 0)
+
+    AdPlaceholders.forEach(Ele => Ele.remove())
   }
 }, 1000)
 
